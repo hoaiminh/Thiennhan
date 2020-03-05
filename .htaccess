@@ -1,0 +1,42 @@
+
+# BEGIN WordPress
+# The directives (lines) between `BEGIN WordPress` and `END WordPress` are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+
+
+# BEGIN WebP Converter
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+</IfModule>
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_ACCEPT} image/webp
+  RewriteCond %{DOCUMENT_ROOT}/HoaiMing/wp-content/uploads-webpc/$1.jpg.webp -f
+  RewriteRule wp-content/uploads/(.+)\.jpg$ wp-content/uploads-webpc/$1.jpg.webp [T=image/webp]
+  RewriteCond %{HTTP_ACCEPT} image/webp
+  RewriteCond %{DOCUMENT_ROOT}/HoaiMing/wp-content/uploads-webpc/$1.jpeg.webp -f
+  RewriteRule wp-content/uploads/(.+)\.jpeg$ wp-content/uploads-webpc/$1.jpeg.webp [T=image/webp]
+  RewriteCond %{HTTP_ACCEPT} image/webp
+  RewriteCond %{DOCUMENT_ROOT}/HoaiMing/wp-content/uploads-webpc/$1.png.webp -f
+  RewriteRule wp-content/uploads/(.+)\.png$ wp-content/uploads-webpc/$1.png.webp [T=image/webp]
+  RewriteCond %{HTTP_ACCEPT} image/webp
+  RewriteCond %{DOCUMENT_ROOT}/HoaiMing/wp-content/uploads-webpc/$1.gif.webp -f
+  RewriteRule wp-content/uploads/(.+)\.gif$ wp-content/uploads-webpc/$1.gif.webp [T=image/webp]
+</IfModule>
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 1 year"
+</IfModule>
+# END WebP Converter
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /HoaiMing/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /HoaiMing/index.php [L]
+</IfModule>
+
+# END WordPress
